@@ -9,12 +9,8 @@ Student.prototype.setSubject = function (subjectName) {
 }
 
 Student.prototype.addMark = function (mark){
-  if (this.marks === undefined){ 
-    this.marks = [];
-    this.marks.push(mark);
-    } else {
-      this.marks.push(mark);
-    }
+  if (this.marks === undefined) this.marks = []; 
+  this.marks.push(mark);
 }
 
 Student.prototype.addMarks = function (...mark){
@@ -23,9 +19,8 @@ Student.prototype.addMarks = function (...mark){
 }
 
 Student.prototype.getAverage = function (){
-  let sum = 0;
-  for (element of this.marks) sum += element;
-  return (sum / this.marks.length);
+  let reducer = (previousValue, currentValue) => previousValue + currentValue;
+  return (this.marks.reduce(reducer) / this.marks.length);
 }
 
 Student.prototype.exclude = function (reason){
